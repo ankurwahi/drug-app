@@ -1,0 +1,15 @@
+<div>
+  <div class="card-group">
+    <div *ngFor="let item of returnedArray">
+      <div class="card" style="width: 15rem;margin-right:10px">
+        <img src="{{item.img}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <h6 class="card-title">Price: {{item.price}}</h6>
+          <p class="card-text">Unit: {{item.unit}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination [totalItems]="data.length" (pageChanged)="pageChanged($event)"></pagination>
+</div>

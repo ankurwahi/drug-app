@@ -1,0 +1,142 @@
+<div class="container">
+  <form [formGroup]="myForm" novalidate (ngSubmit)="save($event, myForm.value, myForm.valid)">
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Drug Name:
+      </label>
+      <input required minlength="3" maxlength="600" type="text" class="form-control" placeholder="Name"
+        formControlName="name">
+
+
+      <div *ngIf="myForm.get('name').invalid && (myForm.get('name').dirty || myForm.get('name').touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="myForm.get('name').errors.required">
+          Drug Name is required.
+        </div>
+        <div *ngIf="myForm.get('name').errors.minlength">
+          Name must be at least 3 characters long.
+        </div>
+        <div *ngIf="myForm.get('name').errors.maxlength">
+          Name must be at most 600 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Drug Code:
+      </label>
+      <ng-select #chosenOwner placeholder="Drug Code" [multiple]="false" [items]="drugCodesData" bindLabel="name"
+        bindValue="id" formControlName="code">
+      </ng-select>
+    </div>
+
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Price:
+      </label>
+      <input type="text" pattern="^[0-9]*$" maxlength="8" class="form-control" placeholder="Price"
+        formControlName="price">
+
+      <div *ngIf="myForm.get('price').invalid && (myForm.get('price').dirty || myForm.get('price').touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="myForm.get('price').errors.required">
+          Price is required.
+        </div>
+        <div *ngIf="myForm.get('price').errors.maxlength">
+          Price must not be greater than 8.
+        </div>
+        <div *ngIf="myForm.get('price').errors.pattern">
+          Price must be in numeric form.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Quantity:
+      </label>
+      <input type="text" maxlength="9" pattern="^[0-9]*$" class="form-control" placeholder="Quantity" formControlName="quantity">
+
+      <div *ngIf="myForm.get('quantity').invalid && (myForm.get('quantity').dirty || myForm.get('quantity').touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="myForm.get('quantity').errors.required">
+          Quantity is required.
+        </div>
+        <div *ngIf="myForm.get('quantity').errors.maxlength">
+          Quantity must not be greater than 9.
+        </div>
+        <div *ngIf="myForm.get('quantity').errors.pattern">
+          Quantity must be in numeric.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" placeholder="Quantity" formControlName="is_otc"> Is OTC
+    </div>
+
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Category:
+      </label>
+      <ng-select #chosenOwner placeholder="Category" [multiple]="false" [items]="categoryData" bindLabel="name"
+        bindValue="id" formControlName="category">
+      </ng-select>
+    </div>
+
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Unit:
+      </label>
+      <input type="text" class="form-control" maxlength="9" placeholder="Unit" formControlName="unit">
+
+      <div *ngIf="myForm.get('unit').invalid && (myForm.get('unit').dirty || myForm.get('unit').touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="myForm.get('unit').errors.required">
+          Unit is required.
+        </div>
+        <div *ngIf="myForm.get('unit').errors.maxlength">
+          Price must not be greater than 20.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Status:
+      </label>
+      <ng-select #chosenOwner placeholder="Active" [multiple]="false" [items]="activeData" bindLabel="name"
+        bindValue="id" formControlName="status">
+      </ng-select>
+    </div>
+
+    <div class="form-group">
+      <label class="label myLabel" for="exampleInputUserName">
+        Img url:
+      </label>
+      <input type="text" class="form-control" placeholder="Pic URL" formControlName="img">
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">
+        Add Drug
+      </button> &nbsp;&nbsp;
+      <button type="button" class="btn btn-success" (click)="myForm.reset({}); addClick.emit({});">
+        Reset
+      </button>
+    </div>
+
+    <br />
+    <div class="form-group">
+      <a type="button" href="#list" class="btn btn-primary width100">
+        View Drugs
+      </a>
+    </div>
+
+  </form>
+</div>
