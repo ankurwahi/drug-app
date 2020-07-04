@@ -21,7 +21,8 @@ export class AppComponent {
   { 
     if(data)
     {
-      this.listData =[data, ...this.listData];
+      this.listData =[data, ...this.listData];  
+      alert('Added Success');
     }
   }
 }
