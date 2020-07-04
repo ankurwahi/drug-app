@@ -4,13 +4,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HeaderComponent } from './navbar/header/header.component';
 import { ListComponent } from './drug/list/list.component';
 import { AddComponent } from './drug/add/add.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
-  declarations: [AppComponent,  HeaderComponent, ListComponent, AddComponent],
+  declarations: [AppComponent, ListComponent, AddComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
